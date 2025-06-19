@@ -6,6 +6,7 @@ import {
   TextInput,
   Button,
   TouchableOpacity,
+  useWindowDimensions,
 } from 'react-native';
 import tw from 'tailwind-react-native-classnames';
 import ProductItem from './components/ProductItem';
@@ -41,6 +42,8 @@ const products = [
 ];
 
 export default function App() {
+  const { width } = useWindowDimensions();
+  const isTablet = width >= 768;
   const { cartItems, addToCart, removeFromCart, total } = useCart();
   const {
     voucherCode,
@@ -59,12 +62,12 @@ export default function App() {
         data={products}
         keyExtractor={item => item.id}
         renderItem={({ item }) => (
-          <View style={tw`w-1/2 p-2`}>
+          <View style={tw`${isTablet ? 'w-1/2' : 'w-full'} p-2`}>
             <ProductItem product={item} onAdd={() => addToCart(item)} />
           </View>
         )}
-        numColumns={2}
-        columnWrapperStyle={tw`justify-between`}
+        numColumns={isTablet ? 2 : 1}
+        columnWrapperStyle={isTablet ? tw`justify-between` : undefined}
         contentContainerStyle={tw`pb-4`}
         showsVerticalScrollIndicator={false}
       />
@@ -79,11 +82,18 @@ export default function App() {
           onChangeText={setVoucherCode}
         />
 
-        <View style={tw`flex-row justify-between mb-2`}>
-          <View style={tw`w-1/2 pr-1`}>
-            <Button title="Apply Voucher" onPress={applyVoucher} />
+        <View
+          style={tw`${isTablet ? 'flex-row justify-between' : 'flex-col'} mb-2`}
+        >
+          <View style={tw`${isTablet ? 'w-1/2 pr-1' : 'mb-2'}`}>
+            <TouchableOpacity
+              onPress={applyVoucher}
+              style={tw`bg-blue-500 rounded py-2 px-4 items-center`}
+            >
+              <Text style={tw`text-white font-semibold`}>APPLY VOUCHER</Text>
+            </TouchableOpacity>
           </View>
-          <View style={tw`w-1/2 pl-1`}>
+          <View style={tw`${isTablet ? 'w-1/2 pl-1' : ''}`}>
             <TouchableOpacity
               onPress={clearVoucher}
               disabled={discount === 0}
@@ -106,7 +116,7 @@ export default function App() {
         ) : null}
 
         <View style={tw`mt-4`}>
-          <Text style={tw`text-white text-2xl font-extrabold text-right`}>
+          <Text style={tw`text-white text-2xl font-extrabold text-left`}>
             Total: $
             {discount > 0 ? discountedTotal.toFixed(2) : total.toFixed(2)}
           </Text>
