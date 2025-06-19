@@ -5,11 +5,22 @@ import tw from 'tailwind-react-native-classnames';
 export default function Cart({ items, onRemove }) {
   return (
     <View style={tw`mt-6`}>
-      <Text style={tw`text-xl font-bold`}>🛒 Cart ({items.length})</Text>
-      {items.map((item, index) => (
-        <View key={index} style={tw`flex-row justify-between items-center py-2 border-b`}>
-          <Text>{item.productName} - ${item.price}</Text>
-          <Button title="Remove" onPress={() => onRemove(index)} />
+      <Text style={tw`text-xl font-bold text-white mb-2`}>
+        🛒 Cart ({items.reduce((sum, item) => sum + item.quantity, 0)} items)
+      </Text>
+
+      {items.map(item => (
+        <View
+          key={item.id}
+          style={tw`flex-row justify-between items-center py-2 border-b border-gray-700`}
+        >
+          <View>
+            <Text style={tw`text-white`}>
+              {item.productName} {item.quantity > 1 ? `x ${item.quantity}` : ''}
+            </Text>
+            <Text style={tw`text-white text-sm`}>${item.price} each</Text>
+          </View>
+          <Button title="Remove" onPress={() => onRemove(item.id)} />
         </View>
       ))}
     </View>
