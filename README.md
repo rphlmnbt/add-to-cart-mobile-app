@@ -61,6 +61,22 @@ A simple yet fully functional **Add to Cart** mobile app built using **React Nat
 
 ---
 
+## App Screenshots
+
+### Phone View
+
+![image](https://github.com/user-attachments/assets/e22fa906-8959-497f-8415-b0d53537e12f)
+
+![image](https://github.com/user-attachments/assets/a13e8e1f-60c4-4378-a051-1652c7cc6450)
+
+### Tablet View
+
+![image](https://github.com/user-attachments/assets/9b4ebc7e-d319-4c96-969e-b3fed7b85be0)
+
+![image](https://github.com/user-attachments/assets/9c50710c-c5bc-4053-a102-6fb5f664f50d)
+
+---
+
 ## Notes
 
 - The APK file can be found in the root directory (app-release.apk).
