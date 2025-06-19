@@ -1,97 +1,66 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# 🛒 React Native Add to Cart App
 
-# Getting Started
+A simple yet fully functional **Add to Cart** mobile app built using **React Native CLI** and styled with **Tailwind CSS for React Native**. This project showcases essential mobile development skills such as hooks, state management, UI layout, and APK generation — and includes extra features for a realistic e-commerce experience.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+---
 
-## Step 1: Start Metro
+## 📦 Features
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+### ✅ Core Features
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+- **📋 Static Product List**
+  - 4 predefined products with `productName`, `description`, and `price`
+  - Displayed using a responsive grid (2-column on tablets, 1-column on phones)
 
-```sh
-# Using npm
-npm start
+- **🛒 Add to Cart Functionality**
+  - Add products to the cart
+  - Remove individual items
+  - Automatically updates cart state
 
-# OR using Yarn
-yarn start
-```
+- **🧺 Cart Display**
+  - Real-time display of item quantity
+  - Product name and unit price shown per item
+  - Real-time total amount calculation
 
-## Step 2: Build and run your app
+- **🏷️ Voucher System (Bonus Feature)**
+  - Input field to apply a discount code
+  - Supports `discount10` code (10% off)
+  - Shows updated discounted total
+  - Clearable voucher button to remove discount
+  - Displays an error message if voucher is invalid
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+---
 
-### Android
+## ✨ Additional Enhancements
 
-```sh
-# Using npm
-npm run android
+- **🔁 Quantity-Based Cart**
+  - Same items are not duplicated in the list
+  - Quantities are incremented (e.g. `x 2`)
+  - Unit price is shown alongside quantity
 
-# OR using Yarn
-yarn android
-```
+- **❌ Clearable Discount Code**
+  - A button to remove the applied voucher
+  - Discount resets and total is recalculated
 
-### iOS
+- **📐 Responsive Layout**
+  - Adapts to tablet and mobile screens:
+    - Grid layout changes based on screen size
+    - Button layouts stack or row align dynamically
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+- **🔠 TypeScript Support**
+  - Fully typed state hooks and custom hooks
+  - Safer and scalable structure
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+- **🔌 Modular Codebase**
+  - Business logic is separated using custom hooks:
+    - `useCart.ts` for cart logic
+    - `useVoucher.ts` for voucher logic
+  - Clean reusable components:
+    - `ProductItem.tsx`
+    - `Cart.tsx`
 
-```sh
-bundle install
-```
+---
 
-Then, and every time you update your native dependencies, run:
+## Notes
 
-```sh
-bundle exec pod install
-```
-
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
-
-```sh
-# Using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
-```
-
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
-
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
-
-## Step 3: Modify your app
-
-Now that you have successfully run the app, let's make changes!
-
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
-
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+- The APK file can be found in the root directory (app-release.apk).
