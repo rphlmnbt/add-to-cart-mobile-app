@@ -1,8 +1,14 @@
 import React from 'react';
 import { View, Text, Button } from 'react-native';
 import tw from 'tailwind-react-native-classnames';
+import type { Product } from '../types/common';
 
-export default function ProductItem({ product, onAdd }) {
+type ProductItemProps = {
+  product: Product;
+  onAdd: () => void;
+};
+
+export default function ProductItem({ product, onAdd }: ProductItemProps) {
   return (
     <View style={tw`border p-4 mb-2 rounded-lg border-gray-50 bg-gray-600`}>
       <View style={tw`flex-row justify-between items-center mb-1`}>

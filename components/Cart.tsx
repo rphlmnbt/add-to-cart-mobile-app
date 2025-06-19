@@ -1,8 +1,14 @@
 import React from 'react';
 import { View, Text, Button } from 'react-native';
 import tw from 'tailwind-react-native-classnames';
+import type { CartItem } from '../types/common';
 
-export default function Cart({ items, onRemove }) {
+type CartProps = {
+  items: CartItem[];
+  onRemove: (productId: string) => void;
+};
+
+export default function Cart({ items, onRemove }: CartProps) {
   return (
     <View style={tw`mt-6`}>
       <Text style={tw`text-xl font-bold text-white mb-2`}>
