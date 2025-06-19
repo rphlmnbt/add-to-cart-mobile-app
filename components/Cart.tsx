@@ -12,7 +12,7 @@ export default function Cart({ items, onRemove }: CartProps) {
   return (
     <View style={tw`mt-6`}>
       <Text style={tw`text-xl font-bold text-white mb-2`}>
-        🛒 Cart ({items.reduce((sum, item) => sum + item.quantity, 0)} items)
+        Cart ({items.reduce((sum, item) => sum + item.quantity, 0)} items)
       </Text>
 
       {items.map(item => (

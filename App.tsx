@@ -1,5 +1,12 @@
 import React from 'react';
-import { View, Text, FlatList, TextInput, Button } from 'react-native';
+import {
+  View,
+  Text,
+  FlatList,
+  TextInput,
+  Button,
+  TouchableOpacity,
+} from 'react-native';
 import tw from 'tailwind-react-native-classnames';
 import ProductItem from './components/ProductItem';
 import Cart from './components/Cart';
@@ -41,6 +48,8 @@ export default function App() {
     discountedTotal,
     discount,
     applyVoucher,
+    clearVoucher,
+    error,
   } = useVoucher(total);
 
   return (
@@ -61,25 +70,47 @@ export default function App() {
       />
 
       <Cart items={cartItems} onRemove={removeFromCart} />
-
-      <View style={tw`mt-4 mb-4`}>
+      <View style={tw`mt-4`}>
         <TextInput
-          style={tw`border border-gray-50  rounded-lg text-white p-2 mb-2 bg-gray-700`}
+          style={tw`border border-gray-50 rounded-lg text-white p-2 bg-gray-700 mb-3`}
           placeholder="Enter voucher code"
           placeholderTextColor="#ffffff"
           value={voucherCode}
           onChangeText={setVoucherCode}
         />
-        <Button title="Apply Voucher" onPress={applyVoucher} />
-        {discount > 0 ? (
-          <Text style={tw`mt-2 text-white font-semibold`}>
-            Discount Applied! New Total: ${discountedTotal.toFixed(2)}
+
+        <View style={tw`flex-row justify-between mb-2`}>
+          <View style={tw`w-1/2 pr-1`}>
+            <Button title="Apply Voucher" onPress={applyVoucher} />
+          </View>
+          <View style={tw`w-1/2 pl-1`}>
+            <TouchableOpacity
+              onPress={clearVoucher}
+              disabled={discount === 0}
+              style={tw.style(
+                `rounded py-2 px-4 items-center`,
+                discount === 0 ? `bg-gray-600` : `bg-gray-800`,
+              )}
+            >
+              <Text style={tw`text-white font-semibold`}>CLEAR VOUCHER</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        {error ? (
+          <Text style={tw`text-red-400 font-semibold mb-2`}>{error}</Text>
+        ) : discount > 0 ? (
+          <Text style={tw`text-green-400 font-semibold mb-2`}>
+            Discount Applied!
           </Text>
-        ) : (
-          <Text style={tw`mt-2 text-white font-semibold`}>
-            Total: ${total.toFixed(2)}
+        ) : null}
+
+        <View style={tw`mt-4`}>
+          <Text style={tw`text-white text-2xl font-extrabold text-right`}>
+            Total: $
+            {discount > 0 ? discountedTotal.toFixed(2) : total.toFixed(2)}
           </Text>
-        )}
+        </View>
       </View>
     </View>
   );
